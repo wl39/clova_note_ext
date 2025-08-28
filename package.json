@@ -1,0 +1,8 @@
+{
+  "name": "clova_note_ext",
+  "version": "1.0.0",
+  "description": "Chrome extension for summarizing Naver Clova Note transcripts using ChatGPT API.",
+  "scripts": {
+    "test": "echo 'No tests'"
+  }
+}
