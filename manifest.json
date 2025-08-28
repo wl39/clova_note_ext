@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Clova Note Summarizer",
+  "version": "1.0",
+  "description": "Summarize Naver Clova Note transcripts and plan tasks using ChatGPT API.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["https://api.openai.com/*"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://clovanote.naver.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
