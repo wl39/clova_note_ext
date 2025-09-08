@@ -1,11 +1,14 @@
 // Highlight difficult words and provide transcript to the extension
 
-// Fetch transcript from bundled temp.html
-async function extractTranscript() {
-  const res = await fetch(chrome.runtime.getURL('temp.html'));
-  const html = await res.text();
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.innerText;
+// Extract transcript text from the current page
+function extractTranscript() {
+  const nodes = document.querySelectorAll(
+    'div[class^="NoteDetailSttListItem_organism_text__"] .ProseMirror'
+  );
+  if (!nodes.length) return '';
+  return Array.from(nodes)
+    .map((el) => el.textContent.trim())
+    .join('\n');
 }
 
 // Highlight long English words and attach definitions
@@ -63,7 +66,11 @@ if (document.readyState === 'loading') {
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === 'GET_TRANSCRIPT') {
-    extractTranscript().then((transcript) => sendResponse({ transcript }));
-    return true;
+    try {
+      const transcript = extractTranscript();
+      sendResponse({ transcript });
+    } catch (e) {
+      sendResponse({ transcript: '' });
+    }
   }
 });
