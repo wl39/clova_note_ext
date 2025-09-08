@@ -5,13 +5,15 @@
   <style>
     body { width: 300px; font-family: sans-serif; }
     #result { white-space: pre-wrap; margin-top: 10px; }
-    #apiKey { width: 100%; }
+    #apiKey, #question { width: 100%; margin-top: 5px; }
   </style>
 </head>
 <body>
   <input id="apiKey" type="password" placeholder="OpenAI API Key" />
   <button id="saveKey">Save Key</button>
-  <button id="summarize">Summarize & Plan</button>
+  <button id="analyze">Analyze</button>
+  <input id="question" type="text" placeholder="Ask about the meeting" />
+  <button id="ask">Ask</button>
   <div id="result"></div>
   <script src="popup.js"></script>
 </body>

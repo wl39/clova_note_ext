@@ -4,13 +4,16 @@
   "version": "1.0",
   "description": "Summarize Naver Clova Note transcripts and plan tasks using ChatGPT API.",
   "permissions": ["storage", "tabs"],
-  "host_permissions": ["https://api.openai.com/*"],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://api.dictionaryapi.dev/*"
+  ],
   "action": {
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://clovanote.naver.com/*"],
+      "matches": ["https://clovanote.naver.com/w/*/note-detail/*"],
       "js": ["content.js"]
     }
   ]
